@@ -10,17 +10,18 @@ def predict(request):
 
 def predict_success(request):
 
-    if request.POST.get('action')=='post':
+    if request.method == 'POST':
+        print('Success')
         # Patient info
-        Patient_ID = int(request.POST.get('patient_id'))
-        Patient_Age = int(request.POST.get('patient_age'))
+        Patient_ID = str(request.POST.get('Patient_ID'))
+        Patient_Age = int(request.POST.get('Patient_Age'))
         Patient_Gender = int(request.POST.get('Patient_Gender'))
         Patient_Blood_Pressure = int(request.POST.get('Patient_Blood_Pressure'))
         Patient_Heartrate = int(request.POST.get('Patient_Heartrate'))
 
 
         # unpickle model converting bjects into byte streams and vice versa
-        mod=pd.read_pickle(r"new_model.pickle")
+        mod=pd.read_pickle("new_model.pickle")
 
         #  prediction of the model
    
